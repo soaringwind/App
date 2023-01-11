@@ -1,6 +1,6 @@
 <template>
     <p>推荐</p>
-    <PostView :msg="'dfsf'"></PostView>
+    <PostView :title="'这是第一个帖子'" :content="'hello world'"></PostView>
 </template>
 
 <script>
