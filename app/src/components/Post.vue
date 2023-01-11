@@ -4,8 +4,9 @@
       <el-header class="title">
         <el-link type="primary" href="#">{{ title }}</el-link>
       </el-header>
-      <el-main class="content overflowEllipsisStyle">
-        <div class="overflowEllipsisStyle">
+      <el-main class="content">
+        <div class="contDiv">
+          <el-button type="primary" class="readmore" @click="readmore">点击展开全文</el-button>
           <p class="overflowEllipsisStyle">
             {{ title }}第一个帖子的内容: {{ content }}<br />
             I dabbled around a lot when I decided to learn to code <br />
@@ -28,6 +29,21 @@
 <script>
 export default {
   name: 'PostView',
+  setup() {
+    let readmore=()=>{
+      console.log('阅读全文')
+      console.log(document.getElementsByClassName('postCon'))
+      let readMoreBtn = document.getElementsByClassName('readmore')[0]
+      let readMoreStyle = document.getElementsByClassName('postCon')[0].style
+      // let readMoreMainStyle = document.getElementsByClassName('contDiv')[0].style
+      readMoreStyle.height = '1000px'
+      readMoreBtn.style.display = 'none'
+      // readMoreMainStyle.height = '200px'
+    }
+    return {
+      readmore
+    }
+  },
   props: {
     title: String, 
     content: String
@@ -59,6 +75,20 @@ p{
   margin: 0px;
   height: 120px;
 }
+.contDiv{
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 100%;
+}
+.readmore{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 0px;
+  width: 100%;
+  background-image: linear-gradient(#fff, rgba(255,255,255,0));
+}
 .foot{
   height: 40px;
 }
@@ -66,9 +96,9 @@ p{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    // display: -webkit-box;
+    // -webkit-box-orient: vertical;
+    // -webkit-line-clamp: 2;
 }
 .el-link {
   margin-right: 0px;
