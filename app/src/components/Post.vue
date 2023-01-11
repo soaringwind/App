@@ -6,7 +6,7 @@
       </el-header>
       <el-main class="content">
         <div class="contDiv">
-          <el-button type="primary" class="readmore" @click="readmore">点击展开全文</el-button>
+          <el-button type="primary" class="readmore" @click="readmore">展开</el-button>
           <p class="overflowEllipsisStyle">
             {{ title }}第一个帖子的内容: {{ content }}<br />
             I dabbled around a lot when I decided to learn to code <br />
@@ -21,7 +21,14 @@
           </p>
         </div>
       </el-main>
-      <el-footer class="foot">Footer</el-footer>
+      <el-footer class="foot">
+        <div class="footCon">
+          <el-button type="primary">喜欢</el-button>
+          <el-button type="primary">不喜欢</el-button>
+          <el-button type="primary">评论</el-button>
+          <el-button type="primary" class="readless" @click="readless">收起</el-button>
+        </div>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -31,17 +38,24 @@ export default {
   name: 'PostView',
   setup() {
     let readmore=()=>{
-      console.log('阅读全文')
-      console.log(document.getElementsByClassName('postCon'))
       let readMoreBtn = document.getElementsByClassName('readmore')[0]
+      let readLessBtn = document.getElementsByClassName('readless')[0]
       let readMoreStyle = document.getElementsByClassName('postCon')[0].style
-      // let readMoreMainStyle = document.getElementsByClassName('contDiv')[0].style
       readMoreStyle.height = '1000px'
       readMoreBtn.style.display = 'none'
-      // readMoreMainStyle.height = '200px'
+      readLessBtn.style.display = 'block'
+    }
+    let readless=()=>{
+      let readMoreBtn = document.getElementsByClassName('readmore')[0]
+      let readLessBtn = document.getElementsByClassName('readless')[0]
+      let readMoreStyle = document.getElementsByClassName('postCon')[0]
+      readMoreStyle.style.height = '200px'
+      readMoreBtn.style.display = 'block'
+      readLessBtn.style.display = 'none'
     }
     return {
-      readmore
+      readmore, 
+      readless
     }
   },
   props: {
@@ -58,7 +72,7 @@ p{
 }
 .postCon{
   width: 80%;
-  height: 200px;
+  height: 205px;
   border: 1px solid #efefef;
 }
 .postCont{
@@ -73,6 +87,7 @@ p{
 }
 .content{
   margin: 0px;
+  padding-bottom: 10px;
   height: 120px;
 }
 .contDiv{
@@ -87,10 +102,24 @@ p{
   bottom: 0;
   border: 0px;
   width: 100%;
-  background-image: linear-gradient(#fff, rgba(255,255,255,0));
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(20, 182, 232, 0.7));
 }
 .foot{
   height: 40px;
+  margin-bottom: 5px;
+}
+.footCon{
+  position: relative;
+  height: 100%;
+}
+.readless{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 0px;
+  width: 60px;
+  height: 20px;
+  display: none;
 }
 .overflowEllipsisStyle {
     overflow: hidden;
