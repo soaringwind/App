@@ -15,7 +15,14 @@
               </el-menu>
             </div>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="2">
+            <div>
+              <router-link to="WritePost">
+                <el-button class="sendText" style="background: orange; border: 0px">发帖</el-button>
+              </router-link>
+            </div>
+          </el-col>
+          <el-col :span="2">
             <div>
               <el-button class="loginText" style="background: orange; border: 0px">登录/注册</el-button>
             </div>
