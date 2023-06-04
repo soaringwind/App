@@ -3,7 +3,16 @@
 </template>
 
 <script>
+import { getData } from './http/api';
 
+export default {
+  name: 'APP',
+  setup() {
+    getData.then(res=>{
+      console.log(res)
+    })
+  }
+}
 </script>
 
 <style>
